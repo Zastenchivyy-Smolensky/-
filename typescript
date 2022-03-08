@@ -1,0 +1,48 @@
+Typescriptセットアップ
+
+1-1.node環境の確認とインストール
+
+1-2.typeScript環境構築
+1.mkdir ~/User/kageyama/typescript
+2.npm init
+3.関連パッケージのインストール(※)terminal: 
+npm install --save-dev typescript ts-loader webpack webpack-cli webpack-dev-server
+4.webpack.config.jsの作成と設定
+5.tsconfig.jsonの作成と設定terminal: 
+tsc --init
+リンク
+→(https://github.com/deatiger/ts-basic-demo)
+
+
+Typescriptエラー
+Error
+> www@1.0.0 start
+> webpack-dev-server
+
+[webpack-cli] Invalid options object. Dev Server has been initialized using an options object that does not match the API schema.
+ - options has an unknown property 'watchContentBase'. These properties are valid:
+   object { allowedHosts?, bonjour?, client?, compress?, devMiddleware?, headers?, historyApiFallback?, host?, hot?, http2?, https?, ipc?, liveReload?, magicHtml?, onAfterSetupMiddleware?, onBeforeSetupMiddleware?, onListening?, open?, port?, proxy?, setupExitSignals?, static?, watchFiles?, webSocketServer? }
+
+解決策:
+1.webpack.config.js
+devServer: {
+      static: {
+        directory: path.resolve(__dirname, "./dist"),
+      }
+    }
+を追加
+実行 terminal: nix web pack serve
+
+エラー２
+WARNING in configuration
+The 'mode' option has not been set, webpack will fallback to 'production' for this value.
+Set 'mode' option to 'development' or 'production' to enable defaults for each environment.
+You can also set it to 'none' to disable any default behavior. Learn more: https://webpack.js.org/configuration/mode/
+
+解決策:
+1.webpack.config.js
+devServeに追加
+static: {
+       directory: path.resolve(__dirname, "./dist"),
+  }
+実行:> npx webpack serve --mode development

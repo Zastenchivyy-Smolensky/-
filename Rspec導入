@@ -1,0 +1,82 @@
+
+RSpec導入の仕方
+
+まず,RSpecをインストールする
+
+Gemfile
+group :development, :test do
+  [省略]
+  gem 'rspec-rails', '~> 4.0.1'
+　gem "rspec", ">= 3.0.0"
+end
+
+Terminal 
+$ bundle install
+
+$rails g rspec:install
+$bundle exec rspec --init
+.rspec
+
+--require spec_helper
+--color
+--format documentation
+
+require:呼び出すファイルの指定
+coler:出力結果に色をつける
+format:出力形式の設定
+
+
+下準備:
+$ gem install factory_bot_rails
+
+Gemfile
+group :development, :test do
+  gem 'factory_bot_rails'
+end
+
+Spec/factries/todos.rb
+
+FactoryBot.define do
+    factory :todo do
+      name { 'name' }
+    end
+end
+
+
+Rspecを動かす
+
+＄bundle exec rspec
+
+
+RSpec エラー
+ NoMethodError:
+       undefined method `create' for #<RSpec::ExampleGroups::PostAPI:0x0000000138ab05c0>
+
+rails_helper.rb
+
+　#一番下に記述してください
+
+ RSpec.configure do |config|
+    config.include FactoryBot::Syntax::Methods
+  end
+
+tests_spec.rb
+Test = FactoryBot.create(:review)
+
+
+
+https://qiita.com/_kanacan_/items/59d05a605ef3ed992b03
+
+RSpecエラー
+param is missing or the value is empty:
+原因:
+params.require(:collect)の部分が不要
+解決策
+oooo_controller.rb
+
+今回の場合はparams.require(:post).permit(:content, :image, :remove_image)の「require(:post)」の部分が不要なのでここを削除する
+
+undefined method `describe' for main:Object (NoMethodError)`
+
+解決策:
+rspec --init で生成される spec/spec_helper.rb の56行目あたりにある config.disable_monkey_patching! をコメントにするとエラー解消。

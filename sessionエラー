@@ -1,0 +1,42 @@
+Session ログイン
+ログアウトするときは、railsでJqueryを取り入れる
+(Apps→assets→javascripts →applications.js)
+
+ファイル名:application.js
+//= require rails-ujs
+//= require activestorage
+//= require_tree .
+
+ファイル名:Config/webpack/enviroment.js
+
+const { environment } = require('@rails/webpacker')
+
+const webpack = require('webpack')
+environment.plugins.prepend('Provide',
+    new webpack.ProvidePlugin({
+        $: 'jquery/src/jquery',
+        jQuery: 'jquery/src/jquery'
+    })
+)
+module.exports = environment
+
+ファイル名:application.html.erb
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+
+
+
+deviseのとき
+devise.rbを確認する
+
+
+
+$ npm install react-router-dom@5
+
+
+ログイン認証
+https://zenn.dev/masalib/books/2d6e8470732c8b/viewer/b3963b
+
+Zastenchivyy-Smolensky=[aVZFRVRWQVFYT0pKFGZZWV1UWUVdQA==]
+影山亮太==0o2A1IWB0I6f0ZOb
+07KS07O507Ob07OlDdWNgdWBgQ==

@@ -1,0 +1,37 @@
+React SPA エラー
+
+エラー:Network Error
+
+解決策:cors.rbのoriginsをチェックする.そこで,httpsになっていればhttpに変更する.
+またreactアプリのlib/api/product.jsもチェックすること.(特にbaseURL:)http通信にすること.
+Client.jsもチェックする.
+
+
+エラー:Uncaught TypeError: dataList.map is not a function
+
+
+nodebrew compile v15.14.0
+
+Typescript:
+
+React-router-domエラー
+$ yarn add @types/react-router-dom@5
+$ yarn add react-router-dom@5 
+とする
+
+import { useState } from 'react'
+
+export const useTax = (
+  _tax: number,
+): [
+  number,
+  () => number,
+  React.Dispatch<React.SetStateAction<number>>
+] => {
+  const [price, setPrice] = useState(1000)
+  const [value] = useState<number>(_tax)
+
+  const tax = () => Math.floor(price * (1.0 + value / 100))
+
+  return [price, tax, setPrice]
+}

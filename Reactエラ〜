@@ -1,0 +1,37 @@
+Rails Api エラー
+
+ActionController::InvalidAuthenticityToken
+
+解決策
+controllers/api/posts_controller.rb
+
+class Api::TasksController < ApplicationController
+protect_from_forgery #追記
+（略）
+なぜこのエラーが発生するのか?
+railsはデフォルトでaplication.controller.rbにprotect_from_forgeryメソッドが定義されています。
+これはCSRF(Cross-Site Request Forgery）の対策です。CSRFは、簡単に言うと、悪意のあるユーザーがサーバーへのリクエストを捏造して正当なものに見せかけ、認証済みユーザーを装うという攻撃手法です。
+
+
+
+エラー名:rails aborted! Sprockets::Railtie::ManifestNeededError: Expected to find a manifest file
+
+解決策:
+(1)app/assets/config/manifest.js
+上記のフォルダに「manifest.js」を作って入れる。
+app/assets/配下に「config」がない場合は自分で作る。
+(2) manifest.jsに不足した記述を書く
+manifest.js
+
+  //= link_tree ../images
+  //= link_directory ../javascripts .js
+  //= link_directory ../stylesheets .css
+
+(3)rails sでサーバーが起動出来ればok!
+
+https://qiita.com/TheOkachanPG/items/5b70c0567fa393aeef6a
+
+
+https://github.com/Zastenchivyy-Smolensky/neko-types-react-front.git
+
+https://github.com/Zastenchivyy-Smolensky/react-rails-todos.git

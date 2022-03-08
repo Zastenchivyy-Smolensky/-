@@ -1,0 +1,9 @@
+Warning: Failed prop type: The prop `justify` of `ForwardRef(Grid)` is deprecated. Use `justifyContent` instead, the prop was renamed.
+
+Warning: Can't perform a React state update on an unmounted component. This is a no-op, but it indicates a memory leak in your application. To fix, cancel all subscriptions and asynchronous tasks in a useEffect cleanup function.
+
+
+kageyama@kageyamutanoMBP backend % rails g model Product title:string reason:string thoughts:string tech:string loadmap:string commitment:string link:text github:text how:string
+
+
+ rails g model title:string image:string thoughts:string tech:string day:integer commitment:string link:text github:text how:string
